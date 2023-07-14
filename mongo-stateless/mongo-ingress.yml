@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mongo-webapp
+  namespace: default
+  annotations:
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "mongo.express.local.io"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: mongo-express-service
+                port:
+                  number: 8080
